@@ -4,12 +4,11 @@ import numpy as np
 from tensorflow import keras
 from keras.models import Model
 from keras.models import Sequential
-from keras.models import  load_model
 from keras.layers import Dense, Dropout, Flatten
 from keras.layers import Conv2D, MaxPooling2D
 from keras.regularizers import l2
 
-#Rectified Layer Unit activation function and coefficient of Leaky ReLU is 0.1
+#Rectified Layer Unit activation function and coefficient of the Leaky ReLU equation is 0.1
 lrelu = keras.layers.LeakyReLU(alpha=0.1)
 
 #Building the YOLO architecture
@@ -62,7 +61,7 @@ filters, biases = model.layers[0].get_weights()    #the indices of layers can be
 print(layer[0].name, filters.shape)
 
 #Plotting the filters
-fig1 = plt.figure(figsize=(8,12))
+fig1 = plt.figure(figsize=(8,8))
 columns=8
 rows=8
 n_filters=columns*rows

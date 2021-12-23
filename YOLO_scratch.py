@@ -75,20 +75,23 @@ plt.show()
 
 #Analyzing the filter outputs
 #For that, we will define a truncated architecture to study the filter outputs
-conv_layer_index=[0, 2, 4, 5, 6, 7, 9, 10, 11, 12]  # you can choose any convolution layers, you can find the indices of them from the layer array
+conv_layer_index=[0, 2, 4, 5, 6, 7, 9, 10, 11, 12]  #We can choose any number of convolution layers; simply find the indices of them from the layer array
 outputs = [model.layers[i].output for i in conv_layer_index]
 model_short = Model(inputs=model.inputs, outputs=outputs)
-print(model_short.summary()) #This will show the complete analysis ofyour architecture
+#The following command will plot the complete analysis of our architecture
+print(model_short.summary()) 
 
 #Input image of size = 448*448
 from keras.preprocessing.image import load_img, img_to_array
 img = load_img("test2.png")
 
+#Converting image to array
 img = img_to_array(img)
 img = np.expand_dims(img, axis=0)
-
+#Predicting using the truncated model
 feature_output = model_short.predict(img)
 
+#Plotting the results
 columns = 8
 rows = 8
 for ftr in feature_output:
